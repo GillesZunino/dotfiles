@@ -77,15 +77,15 @@ set -g @tasks_icon_outstanding '+ '
 # Status bar ------------------------------------------------------------- 
 # set-option -g status on
 set-option -g set-titles on
-set -g status-interval 1
+##set -g status-interval 1
 set-option -g update-environment "SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION DISPLAY"
 
 set -g status-position bottom
 set -g status-bg colour248
 set -g status-fg colour137
 set -g status-attr 'none'
-set -g status-left '#[fg=colour240]# '
-set -g status-right '#[fg=colour240] #[fg=colour10,bold,bg=default] %a %m-%d  %H:%M:%S #[fg=colour165]#[bg=default] #H '
+##set -g status-left '#[fg=colour240]# '
+##set -g status-right '#[fg=colour240] #[fg=colour10,bold,bg=default] %a %m-%d  %H:%M:%S #[fg=colour165]#[bg=default] #H '
 set -g status-right-length 100
 set -g status-left-length 70
 
@@ -102,12 +102,12 @@ setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=c
 
 # Plugins
 # List of plugins
- set -g @tpm_plugins '          \
-   tmux-plugins/tpm             \
-   chriszarate/tmux-tasks       \
-   soyuka/tmux-current-pane-hostname     \
-   christoomey/vim-tmux-navigator       \
-'
+#set -g @tpm_plugins '          \
+#   tmux-plugins/tpm             \
+#   chriszarate/tmux-tasks       \
+#   soyuka/tmux-current-pane-hostname     \
+#   christoomey/vim-tmux-navigator       \
+#'
 
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
