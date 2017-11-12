@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Configure apt-get repositories
-echo "Updating apt-get repositor list..."
-sudo add-apt-repository ppa:git-core/ppa
+echo "Updating apt-get repository list..."
+sudo add-apt-repository -y ppa:git-core/ppa
 
 # Update pkg lists
 echo "Updating package lists..."
