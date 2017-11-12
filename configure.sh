@@ -82,7 +82,20 @@ echo ''
 git clone https://github.com/sheerun/vim-wombat-scheme.git ~/.vim/colors/wombat 
 mv ~/.vim/colors/wombat/colors/* ~/.vim/colors/
 
-
+echo ''
+echo "Now pulling down Gilles Zunino dotfiles..."
+git clone https://github.com/gilleszunino/dotfiles.git ~/.dotfiles
+echo ''
+cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
+echo ''
+echo "Checking out WSL branch..." && git checkout wsl
+echo ''
+echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
+if [[ $? -eq 0 ]]
+then
+    echo "Successfully configured your environment with Gilles Zunino's dotfiles..."
+else
+    echo "Gilles Zunino's dotfiles were not applied successfully..." >&2
 
 # Set default shell to zsh
 echo ''
