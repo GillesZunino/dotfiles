@@ -90,7 +90,6 @@ cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo ''
 echo "Checking out WSL branch..." && git checkout wsl
 echo ''
-echo "Making scripts executable" executable && chmod +x $HOME/.dotfiles/script/bootstrap
 echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
 if [[ $? -eq 0 ]]
 then
