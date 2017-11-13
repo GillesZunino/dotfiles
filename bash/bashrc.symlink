@@ -115,4 +115,4 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
-export PATH=$PATH:/home/gzunino/bin
+export PATH=$PATH:/home/$user/bin
