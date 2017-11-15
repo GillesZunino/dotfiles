@@ -61,7 +61,6 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -108,11 +107,24 @@ if ! shopt -oq posix; then
 fi
 
 export CLICOLOR=1
+
+# Enable git completions
 source ~/.git-completion.bash
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (\[\033[35m\]%s\[\033[0m\])") \$ '
+
+# Enhance prompt with git status if in a git repo working directory
+if [ "$color_prompt" = yes ]; then
+   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (\[\033[35m\]%s\[\033[0m\])") \$ '
+else
+   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (\[\033[35m\]%s\[\033[0m\])") \$ '
+fi
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
+# Export per user standard" bin directory
 export PATH=$PATH:/home/$user/bin
+
+# Clear temporary environment variables
+unset color_prompt force_color_prompt
+
