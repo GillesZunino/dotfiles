@@ -97,7 +97,7 @@ else
 
 # Set default shell to zsh
 echo ''
-read -p "Do you want to change your default shell? y/n" -n 1 -r
+read -p "Do you want to change your default shell? y/n" -n 1 -r REPLY
 echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
