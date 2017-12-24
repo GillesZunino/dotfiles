@@ -3,7 +3,7 @@
 # Configure apt-get repositories
 echo "Updating apt-get repository list..."
 sudo add-apt-repository -y ppa:git-core/ppa
-sudo add-apt-repository ppa:jonathonf/vim
+sudo add-apt-repository -y ppa:jonathonf/vim
 
 # Update pkg lists
 echo "Updating package lists..."
@@ -66,6 +66,7 @@ echo ''
 echo "Now pulling down Gilles Zunino dotfiles..."
 git clone https://github.com/gilleszunino/dotfiles.git ~/.dotfiles
 echo ''
+pushd $(pwd) 
 cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo ''
 echo "Checking out WSL branch..." && git checkout wsl
@@ -76,14 +77,18 @@ then
     echo "Successfully configured your environment with Gilles Zunino's dotfiles..."
 else
     echo "Gilles Zunino's dotfiles were not applied successfully..." >&2
+fi
+
+# Restore path
+popd
 
 # Set default shell to zsh
 echo ''
-read -p "Do you want to change your default shell? y/n" -n 1 -r REPLY
+read -p "Do you want to change your default shell? Yy/Nn: " -n 1 -r REPLY
 echo ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-	echo "Setting zsh as default shell..."
+    echo "Setting zsh as default shell..."
     chsh -s $(which zsh); exit 0
     if [[ $? -eq 0 ]]
     then
