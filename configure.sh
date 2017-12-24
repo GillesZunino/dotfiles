@@ -20,6 +20,11 @@ echo ''
 echo "Installing git and bash-completion..."
 sudo apt-get install git bash-completion -y
 
+# Upgrade all the things
+echo ''
+echo "Upgrade all apt packages and prune unsed ones..."
+sudo apt-get upgrade -y && sudo apt-get autoremove -y
+
 echo ''
 echo "Configuring git-completion..."
 GIT_VERSION=`git --version | awk '{print $3}'`
