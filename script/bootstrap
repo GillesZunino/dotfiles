@@ -116,7 +116,7 @@ install_dotfiles () {
 
 install_dotfiles
 
-# backup old bin, if exists
+# Backup old bin, if exists
 if [ -e $HOME/bin ]
 then
     echo ''
@@ -124,11 +124,14 @@ then
     sudo mv $HOME/bin bin_old
 else
     echo ''
-    echo "No current $HOME/bin folder found. Proceeding to link bin folder for tumx scripts..."
+    echo "No current $HOME/bin folder found"
 fi
 
-# symlink .dotfiles bin to ~
-ln -s $HOME/.dotfiles/bin $HOME/bin
+# Symlink .dotfiles bin to ~
+if [ -d "$HOME/.dotfiles/bin" ]
+then
+    ln -s $HOME/.dotfiles/bin $HOME/bin
+fi
 
 echo ''
 echo '  All installed!'
