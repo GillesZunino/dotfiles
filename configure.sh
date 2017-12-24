@@ -3,6 +3,7 @@
 # Configure apt-get repositories
 echo "Updating apt-get repository list..."
 sudo add-apt-repository -y ppa:git-core/ppa
+sudo add-apt-repository ppa:jonathonf/vim
 
 # Update pkg lists
 echo "Updating package lists..."
@@ -54,31 +55,12 @@ echo ''
 wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark
 mv dircolors.256dark .dircolors
 
-# vimrc vundle install
+# vim-plug install
 echo ''
-echo "Installing vundle..."
+echo "Installing vim-plug..."
 echo ''
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-# Pathogen install
-echo ''
-echo "Installing Pathogen..."
-echo ''
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-
-# Nerdtree for vim install
-echo ''
-echo "Installing Nerdtree for Vim..."
-echo ''
-git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-
-# Vim color scheme install
-echo ''
-echo "Installing vim wombat color scheme..."
-echo ''
-git clone https://github.com/sheerun/vim-wombat-scheme.git ~/.vim/colors/wombat 
-mv ~/.vim/colors/wombat/colors/* ~/.vim/colors/
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo ''
 echo "Now pulling down Gilles Zunino dotfiles..."
