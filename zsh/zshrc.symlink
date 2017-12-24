@@ -1,8 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Set default user
-export DEFAULT_USER="$USER"
+# export PATH=$HOME/bin:/usr/local	/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -53,7 +50,7 @@ POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -111,6 +108,15 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias EDITOR=nvim
 
-export PATH=$PATH:~/bin
+# Add ~/bin to the user's path
+if [ -d "~/bin" ]; then
+    export PATH=$PATH;~/bin
+fi
+
+# Set default user if not already set
+if [ -z ${DEFAULT_USER+x} ]; then
+    set DEFAULT_USER=$(whoami)
+    export DEFAULT_USER
+fi
 
 autoload bashcompinit && bashcompinit
