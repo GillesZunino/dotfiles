@@ -127,21 +127,24 @@ fi
 # Restore path
 popd
 
-# Set default shell to zsh
-echo ''
-read -p "Do you want to change your default shell? Yy/Nn: " -n 1 -r REPLY
-echo ''
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    echo "Setting zsh as default shell..."
-    sudo chsh -s $(which zsh) $USER
-    if [[ $? -eq 0 ]]
+# Set default shell to zsh only if it is not currently set
+currentShell=`grep $USER /etc/passwd | awk -F: '{ print $7 }'`
+if [ "$currentShell" != "/usr/bin/zsh" ]; then
+    echo ''
+    read -p "Do you want to change your default shell? Yy/Nn: " -n 1 -r REPLY
+    echo ''
+    if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        echo "Successfully set your default shell to zsh..."
-    else
-        echo "Default shell not set successfully..." >&2
+        echo "Setting zsh as default shell..."
+        sudo chsh -s $(which zsh) $USER
+        if [[ $? -eq 0 ]]
+        then
+            echo "Successfully set your default shell to zsh..."
+        else
+            echo "Default shell not set successfully..." >&2
+    fi
+    else 
+        echo "You chose not to configure zsh as default shell"
+    fi
+    echo 'Done'
 fi
-else 
-    echo "You chose not to configure zsh as default shell"
-fi
-echo 'Done'
