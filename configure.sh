@@ -57,7 +57,7 @@ then
 fi
 
 # oh-my-zsh plugin install
-if [ -d "~/.zsh/zsh-syntax-highlighting" ]
+if [ ! -d "~/.zsh/zsh-syntax-highlighting" ]
 then
     echo ''
     echo "Installing oh-my-zsh plugins..."
@@ -73,12 +73,12 @@ else
 fi
 
 # powerlevel10k
-if [ -d "~/.oh-my-zsh/custom/themes/powerlevel10k" ]
+if [ ! -d "~/.oh-my-zsh/custom/themes/powerlevel10k" ]
 then
     echo ''
     echo "Installing powerlevel10k..."
     echo ''
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 else
     echo ''
     echo "Pulling powerlevel10k repo..."
@@ -104,7 +104,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 echo ''
 echo "Installing Gilles Zunino dotfiles..."
-if [ -d "~/.dotfiles" ]
+if [ ! -d "~/.dotfiles" ]
 then
     git clone https://github.com/gilleszunino/dotfiles.git ~/.dotfiles
 fi
