@@ -10,7 +10,7 @@
     ```bash
     :PlugInstall
     ```
-3. Install the Powerline variants of [Cascadia Code](https://github.com/microsoft/cascadia-code) : `Cascadia Code PL` and `Cascadia Mono PL`.
+3. Install all variants of `MesloLGS NF` font [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md).
 
 4. Configure Windows Terminal as follows:
     ```json
@@ -20,8 +20,7 @@
         "source": "Windows.Terminal.Wsl",
         "commandline" : "wsl.exe ~ -d Ubuntu",
 
-        "fontFace" : "Cascadia Mono PL",
-        "fontWeight": "extra-light",
+        "fontFace": "MesloLGS NF",
         "fontSize": 9,
 
         "useAcrylic": true,
