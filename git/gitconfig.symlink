@@ -31,3 +31,5 @@
 [user]
 	name = Gilles Zunino
 	email = GillesZunino@users.noreply.github.com
+[pull]
+	rebase = false
