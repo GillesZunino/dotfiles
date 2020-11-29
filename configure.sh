@@ -114,7 +114,7 @@ cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo ''
 echo "Checking out WSL branch..." && git checkout wsl
 echo ''
-echo "Pulling latest WSL branch..." && git pull
+echo "Pulling latest WSL branch..." && git reset --hard origin/wsl && git pull
 echo ''
 echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
 if [[ $? -eq 0 ]]
