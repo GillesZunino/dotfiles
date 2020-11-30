@@ -2,7 +2,7 @@
 
 1. Open a Powershell Core window and run:
     ```powershell
-    Invoke-Expression -Command ( Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/Configure.ps1 ).RawContent
+    Invoke-Expression -Command ( Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/Configure.ps1 ).Content
     ```
 2. Install all variants of `MesloLGS NF` font [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md). Make sure to install for all users.
 
