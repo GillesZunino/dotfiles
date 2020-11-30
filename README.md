@@ -1,8 +1,8 @@
 # Personal dotfiles - Windows Powershell Core
 
-1. Open a Widows Powershell Core window and run:
+1. Open a Powershell Core window and run:
     ```powershell
-    TODO
+    Invoke-Expression -Command ( Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/Configure.ps1 ).RawContent
     ```
 2. Install all variants of `MesloLGS NF` font [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md). Make sure to install for all users.
 
