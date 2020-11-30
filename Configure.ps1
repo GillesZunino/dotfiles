@@ -1,19 +1,22 @@
 # oh-my-posh
 if ((Get-Module -Name oh-my-posh) -ne "") {
     Write-Host "Updating module 'oh-my-posh'"
-    #Update-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+    Update-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 } else {
     Write-Host "Installing module 'oh-my-posh'"
-    #Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+    Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 }
 
 # Copy custom theme
-[string] $themeFullyQualifiedPath = "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"
+[string] $userOhMyPoshProfileFullPath = Join-Path -Path $env:USERPROFILE -ChildPath "oh-my-posh"
+[string] $themeFullyQualifiedPath = Join-Path -Path $userOhMyPoshProfileFullPath -ChildPath "GillesIO.omp.json"
 if (Test-Path -Path $themeFullyQualifiedPath) {
-    #Remove-Item -Path $themeFullyQualifiedPath -Force
-    Write-Host "Delete existing profile"
+    Write-Host "Custom theme already exists - Removing"
+    Remove-Item -Path $themeFullyQualifiedPath -Force
 }
-#Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/Configure.ps1 -OutFile $themeFullyQualifiedPath
+Write-Host "Refreshing oh-my-posh theme at" $themeFullyQualifiedPath
+New-Item -ItemType Directory -Force -Path $userOhMyPoshProfileFullPath
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json -OutFile $themeFullyQualifiedPath
 
 # Update $PROFILE to configure the custom theme
-# TODO
+# TODO: Automate adding to $PROFILE the following - Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"
