@@ -1,0 +1,116 @@
+{
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "powerline",
+          "foreground": "#000000",
+          "background": "#ffffff"
+        },
+        {
+          "type": "root",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#ff479c"
+        },
+        {
+          "type": "node",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#000000",
+          "background": "#6CA35E",
+          "properties": {
+            "prefix": " \uE718 "
+          }
+        },
+        {
+          "type": "dotnet",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#000000",
+          "background": "#c386f1",
+          "properties": {
+            "prefix": " \uE72E "
+          }
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#ffffff",
+          "background": "#0000EA",
+          "properties" : {
+              "home_icon": "\uF7DB",
+              "folder_icon": "\uF115",
+              "folder_separator_icon": "\uE0B1",
+              "style": "short"
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#000000",
+          "background": "#fffb38",
+          "properties": {
+            "display_stash_count": true,
+            "display_upstream_icon": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "exit",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B2",
+          "invert_powerline": true,
+          "foreground": "#ffffff",
+          "background": "#000000",
+          "properties": {
+            "display_exit_code": true,
+            "always_enabled": true,
+            "error_color": "#ff0000",
+            "color_background": true,
+            "always_numeric": true
+          }
+        },
+        {
+          "type": "time",
+          "style": "powerline",
+          "foreground": "#000000",
+          "background": "#ffffff",
+          "properties": {
+            "time_format": "15:04:05",
+            "postfix": " \uF017 "
+          }
+        }
+      ]
+    },
+    {
+      "type": "newline"
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "diamond",
+          "foreground": "#000000",
+          "background": "#91ddff",
+          "leading_diamond": "",
+          "trailing_diamond": "\uE0B0"
+        }
+      ]
+    }
+  ],
+  "final_space": true
+}
