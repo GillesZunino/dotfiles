@@ -1,9 +1,9 @@
 # oh-my-posh
 if ([String]::IsNullOrEmpty((Get-Module -Name oh-my-posh))) {
-    Write-Host "Updating module 'oh-my-posh'"
+    Write-Host "Installing module 'oh-my-posh'"
     Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 } else {
-    Write-Host "Installing module 'oh-my-posh'"
+    Write-Host "Updating module 'oh-my-posh'"
     Update-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 }
 
