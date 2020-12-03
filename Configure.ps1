@@ -1,10 +1,10 @@
 # oh-my-posh
-if ((Get-Module -Name oh-my-posh) -ne "") {
+if ([String]::IsNullOrEmpty((Get-Module -Name oh-my-posh))) {
     Write-Host "Updating module 'oh-my-posh'"
-    Update-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+    Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 } else {
     Write-Host "Installing module 'oh-my-posh'"
-    Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+    Update-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 }
 
 # Copy custom theme
