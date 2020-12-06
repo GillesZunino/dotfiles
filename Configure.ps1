@@ -1,11 +1,11 @@
 # oh-my-posh
-if ([String]::IsNullOrEmpty((Get-Module -Name oh-my-posh))) {
-    Write-Host "Installing module 'oh-my-posh'"
-    Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
-} else {
-    Write-Host "Updating module 'oh-my-posh'"
-    Update-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+$allOhMyPoshModules = Get-Module -All -ListAvailable -Name oh-my-posh
+if ($allOhMyPoshModules.Count -gt 0) {
+    Write-Host "Removing oh-my-posh modules"
+    Get-InstalledModule oh-my-posh -AllVersions | Where-Object {$_.Version -ne $Latest.Version} | Uninstall-Module
 }
+Write-Host "Installing module 'oh-my-posh'"
+Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
 
 # Copy custom theme
 [string] $userOhMyPoshProfileFullPath = Join-Path -Path $env:USERPROFILE -ChildPath "oh-my-posh"
