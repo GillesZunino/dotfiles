@@ -83,6 +83,18 @@
           }
         },
         {
+          "type": "executiontime",
+          "style": "powerline",
+          "invert_powerline": true,
+          "powerline_symbol": "\uE0B2",
+          "foreground": "#ffffff",
+          "background": "#8800dd",
+          "properties": {
+            "threshold": 100,
+            "style": "roundrock"
+          }
+        },
+        {
           "type": "time",
           "style": "powerline",
           "foreground": "#000000",
