@@ -46,7 +46,6 @@
           "properties" : {
               "home_icon": "\uF7DB",
               "folder_icon": "\uF115",
-              "folder_separator_icon": "\uE0B1",
               "style": "short"
           }
         },
