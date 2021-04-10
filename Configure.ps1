@@ -1,11 +1,27 @@
-# oh-my-posh
-$allOhMyPoshModules = Get-Module -All -ListAvailable -Name oh-my-posh
+# List all installed versions of oh-my-posh
+$allOhMyPoshModules = Get-InstalledModule -Name oh-my-posh
+$allOhMyPoshModules | Format-Table | Out-Host
+$galleryLatestOhMyPosh = Find-Module -Name oh-my-posh
+
 if ($allOhMyPoshModules.Count -gt 0) {
-    Write-Host "Removing oh-my-posh modules"
-    Get-InstalledModule oh-my-posh -AllVersions | Where-Object {$_.Version -ne $Latest.Version} | Uninstall-Module
+    [Version] $latestInstalledVersion = ( $allOhMyPoshModules | ForEach-Object { [Version]::Parse($_.Version)} | Measure-Object -Maximum ).Maximum
+    [Version] $galleryOhMyPoshVersion = [Version]::Parse($galleryLatestOhMyPosh.Version);
+
+    if ($galleryOhMyPoshVersion -gt $latestInstalledVersion) {
+        Write-Host "Removing installed 'oh-my-posh'"
+        Get-InstalledModule oh-my-posh -AllVersions | Where-Object {$_.Version -ne $Latest.Version} | Uninstall-Module
+        $allOhMyPoshModules = @()
+    } else {
+        Write-Host "Module 'oh-my-posh' is up to date"
+    }
 }
-Write-Host "Installing module 'oh-my-posh'"
-Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease
+
+if ($allOhMyPoshModules.Count -eq 0) {
+    Write-Host "Installing module 'oh-my-posh'"
+    $galleryLatestOhMyPosh | Format-Table | Out-Host
+    Install-Module oh-my-posh -Scope CurrentUser
+}
+
 
 # Copy custom theme
 [string] $userOhMyPoshProfileFullPath = Join-Path -Path $env:USERPROFILE -ChildPath "oh-my-posh"
