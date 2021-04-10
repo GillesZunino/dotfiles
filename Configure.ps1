@@ -41,5 +41,13 @@ if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
     New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force
 }
 
-# Update $PROFILE to configure the custom theme
-# TODO: Automate adding to $PROFILE the following - Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"
+# Update $PROFILE to configure the custom theme if it is not yet enabled
+[string] $ohMyPoshPromptEnableCommand = 'Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"'
+[string] $currentUsersAllHostsProfileContent = Get-Content $PROFILE.CurrentUserAllHosts
+$currentUsersAllHostsProfileContent | ForEach-Object { $hasOhMyPoshProfileCustomization = $false } { $hasOhMyPoshProfileCustomization = $hasOhMyPoshProfileCustomization -or $_.Contains($ohMyPoshPromptEnableCommand) } { $hasOhMyPoshProfileCustomization }
+if ($hasOhMyPoshProfileCustomization -ne $true) {
+    Write-Host "Adding 'oh-my-posh' to `$PROFILE.CurrentUserAllHosts"
+    Add-Content -Path $PROFILE.CurrentUserAllHosts `r`n $ohMyPoshPromptEnableCommand `r`n
+} else {
+    Write-Host "`$PROFILE.CurrentUserAllHosts up to date"
+}
