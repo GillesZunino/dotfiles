@@ -10,7 +10,7 @@ function InstallOrRefresh-Module([string] $moduleName) {
 
         if ($galleryModuleVersion -gt $latestInstalledVersion) {
             Write-Host "Removing installed '$moduleName'"
-            Get-InstalledModule $moduleName -AllVersions | Where-Object {$_.Version -ne $Latest.Version} | Uninstall-Module
+            Get-InstalledModule $moduleName -AllVersions | Where-Object { $_.Version -ne $Latest.Version } | Uninstall-Module
             $allInstalledModules = @()
         } else {
             Write-Host "Module '$moduleName' is up to date"
@@ -32,7 +32,7 @@ function InstallOrRefresh-OhMyPoshTheme([string] $themeFileName, [string] $theme
         Write-Host "Custom theme already exists - Removing"
         Remove-Item -Path $themeFullyQualifiedPath -Force
     }
-    Write-Host "Refreshing 'oh-my-posh' theme at" '$themeFullyQualifiedPath'
+    Write-Host "Refreshing 'oh-my-posh' theme at '$themeFullyQualifiedPath'"
     New-Item -ItemType Directory -Force -Path $userOhMyPoshProfileFullPath
     Invoke-WebRequest -Uri $themeUrl -OutFile $themeFullyQualifiedPath
 }
@@ -41,7 +41,7 @@ function InstallOrRefresh-OhMyPoshTheme([string] $themeFileName, [string] $theme
 function Ensure-OhMyPoshProfileEntry([string] $themeFileName) {
     if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
     {
-        Write-Host "Creating profile for Current User, All Hosts at " $PROFILE.CurrentUserAllHosts
+        Write-Host "Creating profile for Current User, All Hosts at `$PROFILE.CurrentUserAllHosts ($PROFILE.CurrentUserAllHosts)"
         New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force
     }
 
