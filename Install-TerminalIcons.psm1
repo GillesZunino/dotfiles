@@ -1,4 +1,4 @@
-function local:Install-TerminalIcons() {
+function Install-TerminalIcons() {
     [string] $TerminalIconsUserFriendlyName = "Terminal-Icons"
 
     # Install Terminal-Icons
@@ -8,3 +8,5 @@ function local:Install-TerminalIcons() {
     [string] $terminalIconsEnableCommand = "Import-Module -Name $TerminalIconsUserFriendlyName"
     Append-ToCurrentUserAllHostsProfile "# Start $TerminalIconsUserFriendlyName`r`n$terminalIconsEnableCommand" $TerminalIconsUserFriendlyName
 }
+
+Export-ModuleMember -Function Install-TerminalIcons

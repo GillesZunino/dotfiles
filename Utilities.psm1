@@ -1,4 +1,4 @@
-function local:InstallOrRefresh-Module([string] $moduleName) {
+function InstallOrRefresh-Module([string] $moduleName) {
     # List all installed versions of the given module
     $allInstalledModules = Get-InstalledModule -Name $moduleName -ErrorAction Ignore
     $allInstalledModules | Format-Table | Out-Host
@@ -26,7 +26,7 @@ function local:InstallOrRefresh-Module([string] $moduleName) {
     }
 }
 
-function local:Append-ToCurrentUserAllHostsProfile([string] $commandToAppend, [string] $userFacingDescription) {
+function Append-ToCurrentUserAllHostsProfile([string] $commandToAppend, [string] $userFacingDescription) {
     if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts)) {
         Write-Host "Creating profile for Current User, All Hosts at `$PROFILE.CurrentUserAllHosts ($PROFILE.CurrentUserAllHosts)"
         New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force
@@ -49,3 +49,6 @@ function local:Append-ToCurrentUserAllHostsProfile([string] $commandToAppend, [s
         Write-Host "`$PROFILE.CurrentUserAllHosts up to date"
     }
 }
+
+Export-ModuleMember -Function InstallOrRefresh-Module
+Export-ModuleMember -Function Append-ToCurrentUserAllHostsProfile
