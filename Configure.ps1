@@ -26,59 +26,56 @@ function InstallOrRefresh-Module([string] $moduleName) {
     }
 }
 
-
-function InstallOrRefresh-OhMyPoshTheme([string] $themeFileName, [string] $themeUrl) {
-    [string] $userOhMyPoshProfileFullPath = Join-Path -Path $env:USERPROFILE -ChildPath "oh-my-posh"
-    [string] $themeFullyQualifiedPath = Join-Path -Path $userOhMyPoshProfileFullPath -ChildPath $themeFileName
-    if (Test-Path -Path $themeFullyQualifiedPath) {
-        Write-Host "Custom theme already exists - Removing"
-        Remove-Item -Path $themeFullyQualifiedPath -Force
-    }
-    Write-Host "Refreshing 'oh-my-posh' theme at '$themeFullyQualifiedPath'"
-    New-Item -ItemType Directory -Force -Path $userOhMyPoshProfileFullPath
-    Invoke-WebRequest -Uri $themeUrl -OutFile $themeFullyQualifiedPath
-}
-
-
-function Ensure-OhMyPoshProfileEntry([string] $themeFileName) {
-    if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts))
-    {
+function Append-ToCurrentUserAllHostsProfile([string] $commandToAppend, [string] $userFacingDescription) {
+    if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts)) {
         Write-Host "Creating profile for Current User, All Hosts at `$PROFILE.CurrentUserAllHosts ($PROFILE.CurrentUserAllHosts)"
         New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force
     }
 
-    # Update $PROFILE to configure the custom theme if it is not yet enabled
-    [string] $ohMyPoshPromptEnableCommand = 'Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\' + $themeFileName + '"'
-    [string] $currentUsersAllHostsProfileContent = Get-Content $PROFILE.CurrentUserAllHosts
-    [bool] $hasOhMyPoshProfileCustomization = $false
+    # Load profile and inspect if the command is already in
+    [string] $currentUsersAllHostsProfileContent = Get-Content $PROFILE.CurrentUserAllHosts -Raw
+    [bool] $hasProfileCustomization = $false
     if ([String]::IsNullOrEmpty($currentUsersAllHostsProfileContent) -ne $true) {
-        $currentUsersAllHostsProfileContent | ForEach-Object { $hasOhMyPoshProfileCustomization = $false } { $hasOhMyPoshProfileCustomization = $hasOhMyPoshProfileCustomization -or $_.Contains($ohMyPoshPromptEnableCommand) } { $hasOhMyPoshProfileCustomization }
+        $currentUsersAllHostsProfileContent | ForEach-Object { $hasProfileCustomization = $false } { $hasProfileCustomization = $hasProfileCustomization -or $_.Contains($commandToAppend) } { $hasProfileCustomization }
     }
 
-    if ($hasOhMyPoshProfileCustomization -ne $true) {
-        Write-Host "Adding 'oh-my-posh' to `$PROFILE.CurrentUserAllHosts"
+    if ($hasProfileCustomization -ne $true) {
+        Write-Host "Adding '$userFacingDescription' to `$PROFILE.CurrentUserAllHosts"
         if ([String]::IsNullOrEmpty($currentUsersAllHostsProfileContent) -ne $true) {
             Add-Content -Path $PROFILE.CurrentUserAllHosts `n
         }
-        Add-Content -Path $PROFILE.CurrentUserAllHosts "# Start oh-my-posh"
-        Add-Content -Path $PROFILE.CurrentUserAllHosts $ohMyPoshPromptEnableCommand
+        Add-Content -Path $PROFILE.CurrentUserAllHosts $commandToAppend
     } else {
         Write-Host "`$PROFILE.CurrentUserAllHosts up to date"
     }
 }
 
 
-function Install-OhMyPosh() {
-    [string] $ohMyPoshThemeFileName = "GillesIO.omp.json"
 
-    # Install oh-my-posh 3
-    InstallOrRefresh-Module "oh-my-posh"
+function Install-OhMyPosh() {
+    [string] $ohMyPoshUserFriendlyName = "oh-my-posh"
+    [string] $ohMyPoshThemeFileName = "GillesIO.omp.json"
+    [string] $ohMyPoshThemeFileUrl = "https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json"
+
+    # Install oh-my-posh
+    InstallOrRefresh-Module $ohMyPoshUserFriendlyName
     
-    # Copy custom oh-my-posh 3 theme
-    InstallOrRefresh-OhMyPoshTheme $ohMyPoshThemeFileName "https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json"
+    # Copy custom oh-my-posh theme
+    [string] $userOhMyPoshProfileFullPath = Join-Path -Path $env:USERPROFILE -ChildPath $ohMyPoshUserFriendlyName
+    [string] $themeFullyQualifiedPath = Join-Path -Path $userOhMyPoshProfileFullPath -ChildPath $ohMyPoshThemeFileName
+
+    if (Test-Path -Path $themeFullyQualifiedPath) {
+        Write-Host "Custom theme already exists - Removing"
+        Remove-Item -Path $themeFullyQualifiedPath -Force
+    }
+
+    Write-Host "Refreshing '$ohMyPoshUserFriendlyName' theme at '$themeFullyQualifiedPath'"
+    New-Item -ItemType Directory -Force -Path $userOhMyPoshProfileFullPath
+    Invoke-WebRequest -Uri $ohMyPoshThemeFileUrl -OutFile $themeFullyQualifiedPath
     
-    # Add oh-my-posh entry to Powershell profile if needed
-    Ensure-OhMyPoshProfileEntry $ohMyPoshThemeFileName
+    # Update $PROFILE to configure the custom theme if it is not yet enabled
+    [string] $ohMyPoshPromptEnableCommand = 'Set-PoshPrompt "$env:USERPROFILE\' + $ohMyPoshUserFriendlyName + '\' + $ohMyPoshThemeFileName + '"'
+    Append-ToCurrentUserAllHostsProfile "# Start $ohMyPoshUserFriendlyName`r`n$ohMyPoshPromptEnableCommand" $ohMyPoshUserFriendlyName
 }
 
 
