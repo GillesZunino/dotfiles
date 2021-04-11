@@ -1,6 +1,7 @@
 # Personal dotfiles - Windows Powershell Core
 
-1. Install or upgrade  [Powershell Core](https://github.com/PowerShell/PowerShell/releases/latest).
+## Installation
+1. Install or upgrade [Powershell Core](https://github.com/PowerShell/PowerShell/releases/latest).
 2. Open a Powershell Core window and run:
     ```powershell
     Invoke-Expression -Command ( Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/Configure.ps1 ).Content
@@ -20,9 +21,11 @@
         "fontSize": 9
     }
     ```
+    
+5. Restart all instances of Powershell
 
-# Configure oh-my-posh prompt
-Open your Powershell user profile at `$env:USERPROFILE` in a text editor and add the following at the end of the file:
+## Customizations applied
+The installation script automatically enable `oh-my-posh` for the current user on all Powershell hosts. This is done by appending the following at the end of '`$PROFILE.CurrentUserAllHosts`':
 ```powershell
 Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"
 ```
