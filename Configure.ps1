@@ -49,14 +49,17 @@ function Ensure-OhMyPoshProfileEntry([string] $themeFileName) {
     [string] $ohMyPoshPromptEnableCommand = 'Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\' + $themeFileName + '"'
     [string] $currentUsersAllHostsProfileContent = Get-Content $PROFILE.CurrentUserAllHosts
     [bool] $hasOhMyPoshProfileCustomization = $false
-    if ($currentUsersAllHostsProfileContent -ne $null) {
+    if ([String]::IsNullOrEmpty($currentUsersAllHostsProfileContent) -ne $true) {
         $currentUsersAllHostsProfileContent | ForEach-Object { $hasOhMyPoshProfileCustomization = $false } { $hasOhMyPoshProfileCustomization = $hasOhMyPoshProfileCustomization -or $_.Contains($ohMyPoshPromptEnableCommand) } { $hasOhMyPoshProfileCustomization }
     }
-    
+
     if ($hasOhMyPoshProfileCustomization -ne $true) {
         Write-Host "Adding 'oh-my-posh' to `$PROFILE.CurrentUserAllHosts"
-        Add-Content -Path $PROFILE.CurrentUserAllHosts "`r`n# Start oh-my-posh`r`n"
-        Add-Content -Path $PROFILE.CurrentUserAllHosts `r`n$ohMyPoshPromptEnableCommand`r`n
+        if ([String]::IsNullOrEmpty($currentUsersAllHostsProfileContent) -ne $true) {
+            Add-Content -Path $PROFILE.CurrentUserAllHosts `n
+        }
+        Add-Content -Path $PROFILE.CurrentUserAllHosts "# Start oh-my-posh`n"
+        Add-Content -Path $PROFILE.CurrentUserAllHosts `n$ohMyPoshPromptEnableCommand`n
     } else {
         Write-Host "`$PROFILE.CurrentUserAllHosts up to date"
     }
