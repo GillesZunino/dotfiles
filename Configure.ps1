@@ -1,26 +1,26 @@
-function InstallOrRefresh-OhMyPosh() {
-    # List all installed versions of oh-my-posh
-    $allOhMyPoshModules = Get-InstalledModule -Name oh-my-posh
-    $allOhMyPoshModules | Format-Table | Out-Host
-    $galleryLatestOhMyPosh = Find-Module -Name oh-my-posh
+function InstallOrRefresh-Module([string] $moduleName) {
+    # List all installed versions of the given module
+    $allInstalledModules = Get-InstalledModule -Name $moduleName
+    $allInstalledModules | Format-Table | Out-Host
+    $galleryLatestModule = Find-Module -Name $moduleName
 
-    if ($allOhMyPoshModules.Count -gt 0) {
-        [Version] $latestInstalledVersion = ( $allOhMyPoshModules | ForEach-Object { [Version]::Parse($_.Version)} | Measure-Object -Maximum ).Maximum
-        [Version] $galleryOhMyPoshVersion = [Version]::Parse($galleryLatestOhMyPosh.Version);
+    if ($allInstalledModules.Count -gt 0) {
+        [Version] $latestInstalledVersion = ( $allInstalledModules | ForEach-Object { [Version]::Parse($_.Version)} | Measure-Object -Maximum ).Maximum
+        [Version] $galleryModuleVersion = [Version]::Parse($galleryLatestModule.Version);
 
-        if ($galleryOhMyPoshVersion -gt $latestInstalledVersion) {
-            Write-Host "Removing installed 'oh-my-posh'"
-            Get-InstalledModule oh-my-posh -AllVersions | Where-Object {$_.Version -ne $Latest.Version} | Uninstall-Module
-            $allOhMyPoshModules = @()
+        if ($galleryModuleVersion -gt $latestInstalledVersion) {
+            Write-Host "Removing installed '$moduleName'"
+            Get-InstalledModule $moduleName -AllVersions | Where-Object {$_.Version -ne $Latest.Version} | Uninstall-Module
+            $allInstalledModules = @()
         } else {
-            Write-Host "Module 'oh-my-posh' is up to date"
+            Write-Host "Module '$moduleName' is up to date"
         }
     }
 
-    if ($allOhMyPoshModules.Count -eq 0) {
-        Write-Host "Installing module 'oh-my-posh'"
-        $galleryLatestOhMyPosh | Format-Table | Out-Host
-        Install-Module oh-my-posh -Scope CurrentUser
+    if ($allInstalledModules.Count -eq 0) {
+        Write-Host "Installing module '$moduleName'"
+        $galleryLatestModule | Format-Table | Out-Host
+        Install-Module $moduleName -Scope CurrentUser
     }
 }
 
@@ -32,7 +32,7 @@ function InstallOrRefresh-OhMyPoshTheme([string] $themeFileName, [string] $theme
         Write-Host "Custom theme already exists - Removing"
         Remove-Item -Path $themeFullyQualifiedPath -Force
     }
-    Write-Host "Refreshing oh-my-posh theme at" $themeFullyQualifiedPath
+    Write-Host "Refreshing 'oh-my-posh' theme at" '$themeFullyQualifiedPath'
     New-Item -ItemType Directory -Force -Path $userOhMyPoshProfileFullPath
     Invoke-WebRequest -Uri $themeUrl -OutFile $themeFullyQualifiedPath
 }
@@ -66,16 +66,21 @@ function Ensure-OhMyPoshProfileEntry([string] $themeFileName) {
 }
 
 
+function Install-OhMyPosh() {
+    [string] $ohMyPoshThemeFileName = "GillesIO.omp.json"
+
+    # Install oh-my-posh 3
+    InstallOrRefresh-Module "oh-my-posh"
+    
+    # Copy custom oh-my-posh 3 theme
+    InstallOrRefresh-OhMyPoshTheme $ohMyPoshThemeFileName "https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json"
+    
+    # Add oh-my-posh entry to Powershell profile if needed
+    Ensure-OhMyPoshProfileEntry $ohMyPoshThemeFileName
+}
 
 
-[string] $ohMyPoshThemeFileName = "GillesIO.omp.json"
 
 
-# Install oh-my-posh
-InstallOrRefresh-OhMyPosh
-
-# Copy custom theme
-InstallOrRefresh-OhMyPoshTheme $ohMyPoshThemeFileName "https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json"
-
-# Create profile if it does not exist
-Ensure-OhMyPoshProfileEntry $ohMyPoshThemeFileName
+# Install oh-my-posh 3, copy custom theme(s) and insert entry in user profile
+Install-OhMyPosh
