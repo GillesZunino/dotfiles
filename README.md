@@ -6,9 +6,9 @@
     ```powershell
     Invoke-Expression -Command ( Invoke-WebRequest -Uri https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/Configure.ps1 ).Content
     ```
-3. Install all variants of `MesloLGS NF` font [MesloLGS NF](https://github.com/romkatv/powerlevel10k/blob/master/font.md). Make sure to install for all users.
+3. Install all variants of `MesloLGS NF` font from the [MesloLGS NF repository](https://github.com/romkatv/powerlevel10k/blob/master/font.md). Make sure to install for all users.
 
-4. If using Windows Terminal, create a new Windows Terminal entry as follows:
+4. If using Windows Terminal, create a new Windows Terminal entry:
     ```json
     {
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
@@ -22,7 +22,7 @@
     }
     ```
 
-5. Restart all instances of Powershell
+5. Restart all instances of Powershell to ensure all customizations have been applied
 
 ## Customizations applied
 The installation script automatically enables `oh-my-posh` for the current user on all Powershell hosts. This is done by appending the following at the end of '`$PROFILE.CurrentUserAllHosts`':
