@@ -22,7 +22,7 @@ function InstallOrRefresh-Module([string] $moduleName) {
         $galleryLatestModule | Format-Table | Out-Host
 
         Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-        Install-Module $moduleName -Scope CurrentUser
+        Install-Module $moduleName -Scope CurrentUser -Repository PSGallery
     }
 }
 
