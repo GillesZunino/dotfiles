@@ -1,4 +1,4 @@
-function Install-TerminalIcons() {
+function local:Install-TerminalIcons() {
     [string] $TerminalIconsUserFriendlyName = "Terminal-Icons"
 
     # Install Terminal-Icons

@@ -1,7 +1,7 @@
 function Import-RemoteScript([string] $scriptUrl) {
     [string] $scriptSource = Invoke-WebRequest -Uri $scriptUrl
     $ScriptBlock = [Scriptblock]::Create($scriptSource.Content)
-    Invoke-Command -ScriptBlock $ScriptBlock
+    Invoke-Command -NoNewScope -ScriptBlock $ScriptBlock 
 }
 
 
