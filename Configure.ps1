@@ -58,8 +58,8 @@ function Ensure-OhMyPoshProfileEntry([string] $themeFileName) {
         if ([String]::IsNullOrEmpty($currentUsersAllHostsProfileContent) -ne $true) {
             Add-Content -Path $PROFILE.CurrentUserAllHosts `n
         }
-        Add-Content -Path $PROFILE.CurrentUserAllHosts "# Start oh-my-posh`n"
-        Add-Content -Path $PROFILE.CurrentUserAllHosts `n$ohMyPoshPromptEnableCommand`n
+        Add-Content -Path $PROFILE.CurrentUserAllHosts "# Start oh-my-posh"
+        Add-Content -Path $PROFILE.CurrentUserAllHosts $ohMyPoshPromptEnableCommand
     } else {
         Write-Host "`$PROFILE.CurrentUserAllHosts up to date"
     }
