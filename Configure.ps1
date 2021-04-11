@@ -1,6 +1,6 @@
 function InstallOrRefresh-Module([string] $moduleName) {
     # List all installed versions of the given module
-    $allInstalledModules = Get-InstalledModule -Name $moduleName
+    $allInstalledModules = Get-InstalledModule -Name $moduleName -ErrorAction Ignore
     $allInstalledModules | Format-Table | Out-Host
     $galleryLatestModule = Find-Module -Name $moduleName
 
@@ -20,6 +20,8 @@ function InstallOrRefresh-Module([string] $moduleName) {
     if ($allInstalledModules.Count -eq 0) {
         Write-Host "Installing module '$moduleName'"
         $galleryLatestModule | Format-Table | Out-Host
+
+        Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
         Install-Module $moduleName -Scope CurrentUser
     }
 }
