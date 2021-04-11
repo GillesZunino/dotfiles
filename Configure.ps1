@@ -9,7 +9,7 @@ function InstallOrRefresh-Module([string] $moduleName) {
         [Version] $galleryModuleVersion = [Version]::Parse($galleryLatestModule.Version);
 
         if ($galleryModuleVersion -gt $latestInstalledVersion) {
-            Write-Host "Removing installed '$moduleName'"
+            Write-Host "Newer version '$galleryModuleVersion' available. Removing installed '$moduleName' with version '$latestInstalledVersion'"
             Get-InstalledModule $moduleName -AllVersions | Where-Object { $_.Version -ne $Latest.Version } | Uninstall-Module
             $allInstalledModules = @()
         } else {
