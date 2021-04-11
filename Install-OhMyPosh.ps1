@@ -1,4 +1,4 @@
-function Install-OhMyPosh() {
+function local:Install-OhMyPosh() {
     [string] $ohMyPoshUserFriendlyName = "oh-my-posh"
     [string] $ohMyPoshThemeFileName = "GillesIO.omp.json"
     [string] $ohMyPoshThemeFileUrl = "https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json"
