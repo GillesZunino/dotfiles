@@ -1,7 +1,7 @@
-function InstallOrRefresh-Module([string] $moduleName) {
+function Install-GalleryPackage([string] $moduleName) {
     # List all installed versions of the given module
     $allInstalledModules = Get-InstalledModule -Name $moduleName -ErrorAction Ignore
-    $allInstalledModules | Format-Table | Out-Host
+    #$allInstalledModules | Format-Table | Out-Host
     $galleryLatestModule = Find-Module -Name $moduleName
 
     if ($allInstalledModules.Count -gt 0) {
@@ -13,7 +13,7 @@ function InstallOrRefresh-Module([string] $moduleName) {
             Get-InstalledModule $moduleName -AllVersions | Where-Object { $_.Version -ne $Latest.Version } | Uninstall-Module
             $allInstalledModules = @()
         } else {
-            Write-Host "Module '$moduleName' is up to date"
+            Write-Host "Module '$moduleName' ($latestInstalledVersion) is up to date"
         }
     }
 
@@ -26,17 +26,17 @@ function InstallOrRefresh-Module([string] $moduleName) {
     }
 }
 
-function Append-ToCurrentUserAllHostsProfile([string] $commandToAppend, [string] $userFacingDescription) {
+function Merge-CommandToCurrentUserAllHostsProfile([string] $commandToAppend, [string] $userFacingDescription) {
     if (!(Test-Path -Path $PROFILE.CurrentUserAllHosts)) {
         Write-Host "Creating profile for Current User, All Hosts at `$PROFILE.CurrentUserAllHosts ($PROFILE.CurrentUserAllHosts)"
-        New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force
+        New-Item -Type File -Path $PROFILE.CurrentUserAllHosts -Force | Out-Null
     }
 
     # Load profile and inspect if the command is already in
     [string] $currentUsersAllHostsProfileContent = Get-Content $PROFILE.CurrentUserAllHosts -Raw
     [bool] $hasProfileCustomization = $false
     if ([String]::IsNullOrEmpty($currentUsersAllHostsProfileContent) -ne $true) {
-        $currentUsersAllHostsProfileContent | ForEach-Object { $hasProfileCustomization = $false } { $hasProfileCustomization = $hasProfileCustomization -or $_.Contains($commandToAppend) } { $hasProfileCustomization }
+        $currentUsersAllHostsProfileContent | ForEach-Object { $hasProfileCustomization = $false } { $hasProfileCustomization = $hasProfileCustomization -or $_.Contains($commandToAppend) } { $hasProfileCustomization } | Out-Null
     }
 
     if ($hasProfileCustomization -ne $true) {
@@ -46,9 +46,9 @@ function Append-ToCurrentUserAllHostsProfile([string] $commandToAppend, [string]
         }
         Add-Content -Path $PROFILE.CurrentUserAllHosts $commandToAppend
     } else {
-        Write-Host "`$PROFILE.CurrentUserAllHosts up to date"
+        Write-Host "Startup command for '$userFacingDescription' already in `$PROFILE.CurrentUserAllHosts"
     }
 }
 
-Export-ModuleMember -Function InstallOrRefresh-Module
-Export-ModuleMember -Function Append-ToCurrentUserAllHostsProfile
+Export-ModuleMember -Function Install-GalleryPackage
+Export-ModuleMember -Function Merge-CommandToCurrentUserAllHostsProfile
