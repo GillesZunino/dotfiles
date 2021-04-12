@@ -25,7 +25,14 @@
 5. Restart all instances of Powershell to ensure all customizations have been applied
 
 ## Customizations applied
-The installation script automatically enables `oh-my-posh` for the current user on all Powershell hosts. This is done by appending the following at the end of '`$PROFILE.CurrentUserAllHosts`':
-```powershell
-Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"
-```
+The installation script automatically enables capabilities listed below:
+
+* `oh-my-posh` for the current user on all Powershell hosts. This is done by appending the following at the end of '`$PROFILE.CurrentUserAllHosts`':
+    ```powershell
+    Set-PoshPrompt "$env:USERPROFILE\oh-my-posh\GillesIO.omp.json"
+    ```
+
+* `Terminal-Icons` for the current user on all Powershell hosts. This is done by appending the following at the end of '`$PROFILE.CurrentUserAllHosts`':
+    ```powershell
+    Import-Module Terminal-Icons
+    ```
