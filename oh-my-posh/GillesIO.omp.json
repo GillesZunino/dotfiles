@@ -46,7 +46,7 @@
           "properties" : {
               "home_icon": "\uF7DB",
               "folder_icon": "\uF115",
-              "style": "short"
+              "style": "full"
           }
         },
         {
