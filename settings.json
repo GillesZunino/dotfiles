@@ -1,0 +1,220 @@
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    // To learn more about global settings, visit https://aka.ms/terminal-global-settings
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "startupActions": "new-tab -p \"PowerShell Core\" ; split-pane -H -p \"PowerShell Core\"",
+    "theme": "system",
+
+    "initialCols": 350,
+    "initialRows": 102,
+
+    "alwaysShowTabs": true,
+    "showTabsInTitlebar": true,
+    "showTerminalTitleInTitlebar": true,
+
+    "copyOnSelect": false,
+    "copyFormatting": false,
+
+    // To learn more about profiles, visit https://aka.ms/terminal-profile-settings
+    "profiles":
+    {
+        "defaults":
+        {
+            "antialiasingMode": "cleartype",
+            "fontFace": "Consolas",
+            "fontSize": 10
+        },
+        "list":
+        [
+            {
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "name": "PowerShell Core",
+                "source": "Windows.Terminal.PowershellCore",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo -NoExit -Command Cls",
+                "startingDirectory": "E:\\",
+
+                "fontFace":  "MesloLGS NF",
+                "fontSize": 9,
+
+                "useAcrylic": true,
+                "acrylicOpacity": 0.8
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell",
+                "commandline": "powershell.exe -nologo",
+                "startingDirectory": "E:\\",
+
+                "colorScheme": "Campbell Powershell",
+                "hidden": true
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "Command Prompt",
+                "commandline": "cmd.exe",
+                "startingDirectory": "E:\\",
+
+                "colorScheme": "Solarized Dark"
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44c0}",
+                "name": "Visual Studio 2019 PowerShell",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo -NoExit -Command \"&{Cls; Import-Module \"\"\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"\"\"; Enter-VsDevShell efda6164}\"",
+                "startingDirectory": "E:\\",
+
+                "icon" : "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
+
+                "fontFace": "MesloLGS NF",
+                "fontSize": 9,
+
+                "useAcrylic": true,
+                "acrylicOpacity": 0.8
+            },
+            {
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6102}",
+                "name": "Visual Studio 2019 Tools",
+                "commandline": "%comspec% /k \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\Tools\\VsDevCmd.bat\"",
+                "startingDirectory": "E:\\",
+
+                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+                
+                "colorScheme": "Solarized Dark"
+            },
+            {
+                "guid": "{243ADED7-2CD3-46BA-B5D0-590268796F22}",
+                "name": "UN*X MesloLGS NF",
+                "commandline": "cmd.exe",
+                "startingDirectory": "E:\\",
+
+                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+
+                "fontFace": "MesloLGS NF",
+                "fontSize": 9,
+
+                "useAcrylic": true,
+                "acrylicOpacity": 0.8
+            },
+            {
+                "guid": "{243ADED7-2CD3-46BA-C6E1-590268796F22}",
+                "name": "UN*X Cascadia Mono PL",
+                "commandline": "cmd.exe",
+                "startingDirectory": "E:\\",
+
+                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+
+                "fontFace" : "Cascadia Mono PL",
+                "fontWeight": "extra-light",
+                "fontSize": 9,
+
+                "useAcrylic": true,
+                "acrylicOpacity": 0.8
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure",
+                "startingDirectory": "E:\\",
+                        
+                "useAcrylic": true,
+                "acrylicOpacity": 0.8
+            },
+            {
+                "guid" : "{7870a685-a132-4cf3-a8e8-9b68ba0b135c}",
+                "name": "git bash",
+                "commandline": "E:\\Tools\\Git\\bin\\bash.exe",
+                "startingDirectory": "%HOMEDRIVE%%HOMEPATH%",
+
+                "icon": "E:\\Tools\\Git\\mingw64\\share\\git\\git-for-windows.ico",
+
+                "colorScheme": "AlienBlood",
+                "hidden": true
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "name": "Ubuntu 20.04 LTS",
+                "source": "Windows.Terminal.Wsl",
+                "commandline": "wsl.exe ~ -d Ubuntu",
+
+                "fontFace": "MesloLGS NF",
+                "fontSize": 9,
+
+                "useAcrylic": true,
+                "acrylicOpacity": 0.8
+            }
+        ]
+    },
+
+    // To learn more about color schemes, visit https://aka.ms/terminal-color-schemes
+    "schemes": [
+        {
+            "name": "AlienBlood",
+            
+            "black": "#112616",
+            "red": "#7f2b27",
+            "green": "#2f7e25",
+            "yellow": "#717f24",
+            "blue": "#2f6a7f",
+            "purple": "#47587f",
+            "cyan": "#327f77",
+            "white": "#647d75",
+            "brightBlack": "#3c4812",
+            "brightRed": "#e08009",
+            "brightGreen": "#18e000",
+            "brightYellow": "#bde000",
+            "brightBlue": "#00aae0",
+            "brightPurple": "#0058e0",
+            "brightCyan": "#00e0c4",
+            "brightWhite": "#73fa91",
+            "background": "#0f1610",
+            "foreground": "#637d75"
+        },
+        {
+            "name": "Arthur",
+
+            "black": "#3d352a",
+            "red": "#cd5c5c",
+            "green": "#86af80",
+            "yellow": "#e8ae5b",
+            "blue": "#6495ed",
+            "purple": "#deb887",
+            "cyan": "#b0c4de",
+            "white": "#bbaa99",
+            "brightBlack": "#554444",
+            "brightRed": "#cc5533",
+            "brightGreen": "#88aa22",
+            "brightYellow": "#ffa75d",
+            "brightBlue": "#87ceeb",
+            "brightPurple": "#996600",
+            "brightCyan": "#b0c4de",
+            "brightWhite": "#ddccbb",
+            "background": "#1c1c1c",
+            "foreground": "#ddeedd"
+        }
+    ],
+
+
+    // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
+    "actions":
+    [
+        // Bind copy / paste to to Ctrl+C and Ctrl+V in addition to the default Ctrl+Shift+C and Ctrl+Shift+V
+        { "command": { "action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+        { "command": "paste", "keys": "ctrl+v" },
+
+        // Bind open search box to Ctrl+Shift+F
+        { "command": "find", "keys": "ctrl+shift+f" },
+
+        // Press Alt+Shift+D to open a new pane.
+        // - "split": "auto" makes this pane open in the direction that provides the most surface area.
+        // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
+        // To learn more about panes, visit https://aka.ms/terminal-panes
+        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" },
+
+        // Open a split Powershell Core + Powershell Core
+        { "icon": "🔶", "name": "Console - Two Powershell", "command": { "action": "wt", "commandline": "new-tab -p \"PowerShell Core\" ; split-pane -H -p \"PowerShell Core\"" } },
+
+        // Open a split Powershell Core + Visual Studio Powershell Core
+        { "icon": "🔷", "name": "Console - Powershell & VS Powershell", "command": { "action": "wt", "commandline": "new-tab -p \"PowerShell Core\" ; split-pane -H -p \"Visual Studio 2019 PowerShell\"" } }
+    ]
+}
