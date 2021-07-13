@@ -13,7 +13,7 @@ brew install git
 # git useful defaults
 echo ''
 echo "Setting git config --global pull.rebase false"
-git config --global pull.rebase falses
+git config --global pull.rebase false
 
 # oh-my-zsh plugin install
 if [ ! -d "~/.zsh/zsh-syntax-highlighting" ]
