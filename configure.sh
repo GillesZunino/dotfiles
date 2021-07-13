@@ -16,35 +16,33 @@ echo "Setting git config --global pull.rebase false"
 git config --global pull.rebase false
 
 # oh-my-zsh plugin install
-if [ ! -d "~/.zsh/zsh-syntax-highlighting" ]
-then
-    echo ''
-    echo "Installing oh-my-zsh plugins..."
-    echo ''
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-else
+if [ -d ~/.zsh/zsh-syntax-highlighting ]; then
     echo ''
     echo "Pulling oh-my-zsh plugins repo..."
     pushd $(pwd)
     cd ~/.zsh/zsh-syntax-highlighting && git pull
     popd
     echo ''
+else
+    echo ''
+    echo "Installing oh-my-zsh plugins..."
+    echo ''
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 fi
 
 # powerlevel10k
-if [ ! -d "~/.oh-my-zsh/custom/themes/powerlevel10k" ]
-then
-    echo ''
-    echo "Installing powerlevel10k..."
-    echo ''
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-else
+if [ -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]; then
     echo ''
     echo "Pulling powerlevel10k repo..."
     pushd $(pwd)
     cd ~/.oh-my-zsh/custom/themes/powerlevel10k && git pull
     popd
     echo ''
+else
+    echo ''
+    echo "Installing powerlevel10k..."
+    echo ''
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 fi
 
 # vim-plug install
@@ -56,8 +54,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 echo ''
 echo "Installing Gilles Zunino dotfiles..."
-if [ ! -d "~/.dotfiles" ]
-then
+if [ -d ~/.dotfiles ]; then
+else
     git clone https://github.com/gilleszunino/dotfiles.git ~/.dotfiles
 fi
 echo ''
@@ -78,25 +76,3 @@ fi
 
 # Restore path
 popd
-
-# Set default shell to zsh only if it is not currently set
-currentShell=`grep $USER /etc/passwd | awk -F: '{ print $7 }'`
-if [ "$currentShell" != "/usr/bin/zsh" ]; then
-    echo ''
-    read -p "Do you want to change your default shell? Yy/Nn: " -n 1 -r REPLY
-    echo ''
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-        echo "Setting zsh as default shell..."
-        sudo chsh -s $(which zsh) $USER
-        if [[ $? -eq 0 ]]
-        then
-            echo "Successfully set your default shell to zsh..."
-        else
-            echo "Default shell not set successfully..." >&2
-    fi
-    else 
-        echo "You chose not to configure zsh as default shell"
-    fi
-    echo 'Done'
-fi
