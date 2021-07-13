@@ -45,7 +45,7 @@ else
     cd ~/.oh-my-zsh/custom/themes/powerlevel10k && git pull
     popd
     echo ''
-fis
+fi
 
 # vim-plug install
 echo ''
@@ -64,9 +64,9 @@ echo ''
 pushd $(pwd) 
 cd $HOME/.dotfiles && echo "switched to .dotfiles dir..."
 echo ''
-echo "Checking out WSL branch..." && git checkout wsl
+echo "Checking out macos branch..." && git checkout macos
 echo ''
-echo "Pulling latest WSL branch..." && git reset --hard origin/wsl && git pull
+echo "Pulling latest MacOS branch..." && git reset --hard origin/macos && git pull
 echo ''
 echo "Now configuring symlinks..." && $HOME/.dotfiles/script/bootstrap
 if [[ $? -eq 0 ]]
