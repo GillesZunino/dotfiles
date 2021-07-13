@@ -2,13 +2,13 @@
 
 # Upgrade all the things
 echo ''
-echo "Upgrade all apt packages and prune unused ones..."
+echo "Upgrade all brew packages and prune unused ones..."
 brew update && brew outdated && brew upgrade
 
 # git install
 echo ''
 echo "Installing git..."
-sbrew install git
+brew install git
 
 # git useful defaults
 echo ''
