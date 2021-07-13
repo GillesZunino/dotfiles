@@ -4,3 +4,4 @@ This repository contains 'dotfiles' for various platforms (Powershell Core, Linu
 
 * [Powershell Core](https://github.com/PowerShell/PowerShell/releases/latest): checkout branch `powershell` and consult [README.md](https://github.com/GillesZunino/dotfiles/blob/powershell/README.md).
 * Linux zsh: checkout branch `wsl` and consult [README.md](https://github.com/GillesZunino/dotfiles/blob/wsl/README.md).
+* MacOS zsh: checkout branch `macos` and consult [README.md](https://github.com/GillesZunino/dotfiles/blob/macos/README.md).
