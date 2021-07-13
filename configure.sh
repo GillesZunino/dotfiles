@@ -55,6 +55,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 echo ''
 echo "Installing Gilles Zunino dotfiles..."
 if [ -d ~/.dotfiles ]; then
+    echo 'Repo already cloned'
 else
     git clone https://github.com/gilleszunino/dotfiles.git ~/.dotfiles
 fi
