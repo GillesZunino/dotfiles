@@ -10,3 +10,7 @@
     ```bash
     :PlugInstall
     ```
+3. Run the following and install the recommended font:
+    ```bash
+    p10k configure
+    ```
