@@ -3,8 +3,8 @@ function Install-OhMyPosh() {
     [string] $ohMyPoshThemeFileName = "GillesIO.omp.json"
     [string] $ohMyPoshThemeFileUrl = "https://raw.githubusercontent.com/GillesZunino/dotfiles/powershell/oh-my-posh/GillesIO.omp.json"
 
-    # Install oh-my-posh
-    Install-GalleryPackage $ohMyPoshUserFriendlyName
+    # Install or upgrade oh-my-posh
+    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
     
     # Copy custom oh-my-posh theme
     [string] $userOhMyPoshProfileFullPath = Join-Path -Path $env:USERPROFILE -ChildPath $ohMyPoshUserFriendlyName
@@ -20,7 +20,7 @@ function Install-OhMyPosh() {
     Invoke-WebRequest -Uri $ohMyPoshThemeFileUrl -OutFile $themeFullyQualifiedPath
     
     # Update $PROFILE to configure the custom theme if it is not yet enabled
-    [string] $ohMyPoshPromptEnableCommand = 'Set-PoshPrompt "$env:USERPROFILE\' + $ohMyPoshUserFriendlyName + '\' + $ohMyPoshThemeFileName + '"'
+    [string] $ohMyPoshPromptEnableCommand = 'oh-my-posh init pwsh --config "$env:USERPROFILE\' + $ohMyPoshUserFriendlyName + '\' + $ohMyPoshThemeFileName + '" | Invoke-Expression'
     Merge-CommandToCurrentUserAllHostsProfile "# Start $ohMyPoshUserFriendlyName`r`n$ohMyPoshPromptEnableCommand" $ohMyPoshUserFriendlyName
 }
 
