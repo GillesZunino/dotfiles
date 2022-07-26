@@ -3,7 +3,6 @@
 # Configure apt-get repositories
 echo "Updating apt-get repository list..."
 sudo add-apt-repository -y ppa:git-core/ppa
-sudo add-apt-repository -y ppa:jonathonf/vim
 
 # Update pkg lists
 echo "Updating package lists..."
