@@ -131,6 +131,7 @@
     },
     {
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
           "background": "#91ddff",
