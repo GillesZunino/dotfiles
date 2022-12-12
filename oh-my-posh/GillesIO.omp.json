@@ -26,7 +26,9 @@
           "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
-          "fetch_package_manager": true,
+          "properties": {
+            "fetch_package_manager": true
+          },
           "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "type": "node"
         },
@@ -39,22 +41,23 @@
           "type": "dotnet"
         },
         {
-          "foreground": "#100e23",
-          "background": "#906cff",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "display_mode": "context",
-          "home_enabled": true,
-          "template": " \uE235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
-          "type": "python"
-        },
-        {
           "foreground": "#000000",
           "background": "#008AD7",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": "{{ if .EnvironmentName }} \uFD03 {{.Name}} [{{ .User.Name }}] {{ end }}",
           "type": "az"
+        },
+        {
+          "foreground": "#100e23",
+          "background": "#906cff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "properties": {
+            "display_mode": "context"
+          },
+          "template": " \uE235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
         },
         {
           "background": "#0000EA",
