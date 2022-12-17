@@ -1,5 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "final_space": true,
+  "version": 2,
   "blocks": [
     {
       "alignment": "left",
@@ -24,6 +26,9 @@
           "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
+          "properties": {
+            "fetch_package_manager": true
+          },
           "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "type": "node"
         },
@@ -34,6 +39,25 @@
           "style": "powerline",
           "template": " \ue72e {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
           "type": "dotnet"
+        },
+        {
+          "foreground": "#000000",
+          "background": "#008AD7",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "{{ if .EnvironmentName }} \uFD03 {{.Name}} [{{ .User.Name }}] {{ end }}",
+          "type": "az"
+        },
+        {
+          "foreground": "#100e23",
+          "background": "#906cff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "properties": {
+            "display_mode": "context"
+          },
+          "template": " \uE235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+          "type": "python"
         },
         {
           "background": "#0000EA",
@@ -109,10 +133,8 @@
       "type": "prompt"
     },
     {
-      "type": "newline"
-    },
-    {
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
           "background": "#91ddff",
@@ -125,7 +147,5 @@
       ],
       "type": "prompt"
     }
-  ],
-  "final_space": true,
-  "version": 2
+  ]
 }
