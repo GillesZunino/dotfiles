@@ -44,14 +44,6 @@
         },
         {
           "foreground": "#000000",
-          "background": "#008AD7",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": "{{ if .EnvironmentName }} \uFD03 {{.Name}} [{{ .User.Name }}] {{ end }}",
-          "type": "az"
-        },
-        {
-          "foreground": "#000000",
           "background": "#1E9748",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
@@ -82,6 +74,14 @@
           },
           "template": " \ue627 {{ .Full }} ",
           "type": "go"
+        },
+        {
+          "foreground": "#000000",
+          "background": "#008AD7",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "{{ if .EnvironmentName }} \uFD03 {{.Name}} [{{ .User.Name }}] {{ end }}",
+          "type": "az"
         },
         {
           "foreground": "#100e23",
