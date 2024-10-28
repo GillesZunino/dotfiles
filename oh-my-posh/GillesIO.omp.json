@@ -58,8 +58,19 @@
           "properties": {
             "display_mode": "context"
           },
-          "template": " \ue61e {{ .Full }}",
+          "template": " \ue61e {{ .Full }} ",
           "type": "cmake"
+        },
+        {
+          "foreground": "#000000",
+          "background": "#99908a",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "properties": {
+            "display_mode": "context"
+          },
+          "template": " \ue7a8 {{ .Full }} ",
+          "type": "rust"
         },
         {
           "foreground": "#100e23",
