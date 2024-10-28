@@ -95,6 +95,14 @@
           "type": "python"
         },
         {
+          "foreground": "#000000",
+          "background": "#FF9248",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }}\uf487 {{.Version}}{{ end }} {{ if .Name }}{{ .Name }}{{ end }}{{ end }} ",
+          "type": "project"
+        },
+        {
           "background": "#0000EA",
           "foreground": "#ffffff",
           "powerline_symbol": "\ue0b0",
