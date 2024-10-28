@@ -51,6 +51,14 @@
           "type": "az"
         },
         {
+          "type": "cmake",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#000000",
+          "background": "#1E9748",
+          "template": "  {{ .Full }}"
+        },
+        {
           "foreground": "#100e23",
           "background": "#906cff",
           "powerline_symbol": "\ue0b0",
