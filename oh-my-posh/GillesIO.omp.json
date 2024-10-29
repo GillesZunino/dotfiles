@@ -50,7 +50,7 @@
           "properties": {
             "display_mode": "context"
           },
-          "template": " \ue61e {{ .Full }} ",
+          "template": "{{ if .Full }} {{ .Full }} {{end}}",
           "type": "cmake"
         },
         {
