@@ -137,8 +137,7 @@
             "mapped_branches": {
               "main": "👑",
               "master": "🫅",
-
-              "feat/*": "🚀 ",
+              "feature/*": "🚀 ",
               "bug/*": "🐛 "
             }
           },
