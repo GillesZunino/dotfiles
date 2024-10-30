@@ -116,7 +116,7 @@
           "type": "path"
         },
         {
-          "foreground": "#011627",
+          "foreground": "#000000",
           "background": "#33DD2D",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
