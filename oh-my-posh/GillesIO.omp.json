@@ -124,7 +124,7 @@
           "properties": {
             "cache_duration": "none",
             "folder_icon": "\uf115",
-            "home_icon": "\uf7db",
+            "home_icon": "\ueb06",
             "style": "full"
           },
           "template": " {{ .Path }} ",
