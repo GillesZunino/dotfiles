@@ -5,6 +5,11 @@ echo ''
 echo "Upgrade all brew packages and prune unused ones..."
 brew update && brew outdated && brew upgrade
 
+# Zsh install
+echo ''
+echo "Installing Zsh..."
+brew install zsh
+
 # oh-my-posh install
 echo ''
 echo "Installing oh-my-posh..."
