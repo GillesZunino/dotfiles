@@ -10,6 +10,16 @@ echo ''
 echo "Installing Zsh..."
 brew install zsh
 
+# Powershell install
+echo ''
+echo "Installing Powershell..."
+brew install powershell/tap/powershell
+
+# Install Powershell modules
+echo ''
+echo 'Installing Powershell Module "Terminal-Icons"'
+pwsh -c "Install-Module Terminal-Icons"
+
 # oh-my-posh install
 echo ''
 echo "Installing oh-my-posh..."
