@@ -5,6 +5,11 @@ echo ''
 echo "Upgrade all brew packages and prune unused ones..."
 brew update && brew outdated && brew upgrade
 
+# oh-my-posh install
+echo ''
+echo "Installing oh-my-posh..."
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+
 # git install
 echo ''
 echo "Installing git..."
