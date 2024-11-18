@@ -35,6 +35,16 @@ echo ''
 echo "Setting git config --global pull.rebase false"
 git config --global pull.rebase false
 
+# Install oh-my-zsh
+if [ -d ~/.oh-my-zsh ]; then
+    echo ''
+    echo "oh-my-zsh is installed and will auto update"
+else
+    echo ''
+    echo "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
 # oh-my-zsh plugin install
 if [ -d ~/.zsh/zsh-syntax-highlighting ]; then
     echo ''
