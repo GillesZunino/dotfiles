@@ -28,8 +28,13 @@
         #
         # Setting to git 2.0 default to suppress warning message
         default = simple
+[pull]
+	rebase = false
 [user]
 	name = Gilles Zunino
 	email = GillesZunino@users.noreply.github.com
 [pull]
 	rebase = false
+# Github user override
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+    path = "~/.dotfiles/git/github.gitconfig"
