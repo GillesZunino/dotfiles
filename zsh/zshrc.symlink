@@ -98,12 +98,12 @@ export LANG=en_US.UTF-8
 # alias EDITOR=nvim
 
 # Add ~/bin to the user's path
-if [ -d "~/bin" ]; then
-    export PATH=$PATH;~/bin
+if [[ -d ~/bin ]]; then
+    export PATH=$PATH:~/bin
 fi
 
 # Set default user if not already set
-if [ -z ${DEFAULT_USER+x} ]; then
+if [[ -z ${DEFAULT_USER+x} ]]; then
     set DEFAULT_USER=$(whoami)
     export DEFAULT_USER
 fi
