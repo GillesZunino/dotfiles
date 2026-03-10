@@ -139,7 +139,7 @@ autoload bashcompinit && bashcompinit
 [[ ! -f ~/.dotfiles/zsh/custom/p10k.zsh ]] || source ~/.dotfiles/zsh/custom/p10k.zsh
 
 # Run additional custom configuration files if any
-for src in $(find ~/.dotfiles/zsh/custom -maxdepth 2 -name '*.zsh' ! -name "path.zsh"! -name "p10k.zsh")
+for src in $(find ~/.dotfiles/zsh/custom -maxdepth 2 -name '*.zsh' ! -name "path.zsh" ! -name "p10k.zsh")
 do
     source "$src"
 done
