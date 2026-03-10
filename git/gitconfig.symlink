@@ -30,6 +30,10 @@
         default = simple
 [user]
 	name = Gilles Zunino
-	email = GillesZunino@users.noreply.github.com
 [pull]
 	rebase = false
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager
+# Github user override
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+    path = "~/.dotfiles/git/github.gitconfig"
