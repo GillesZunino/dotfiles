@@ -5,6 +5,12 @@
   "tooltips_action": "replace",
   "tooltips": [
   ],
+  "upgrade": {
+    "notice": true,
+    "interval": "168h",
+    "auto": false,
+    "source": "cdn"
+  },
   "blocks": [
     {
       "type": "prompt",
